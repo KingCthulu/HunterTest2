@@ -1,0 +1,17 @@
+# Download the .dmg
+curl https://cp.serverdata.net/voice/pbx/softphonereleases/default/latest-mac/elevate-uc.dmg --output ./elevate-us.dmg
+
+# Mount that bad boi ;p
+hdiutil attach elevate-us.dmg
+
+# Copy their wallet keys--- I mean the application to the application folder.
+cp -r /Volumes/Elevate\ UC\ 2.7.86-universal/Elevate\ UC.app /Applications/
+
+# Make sure of what disk the .dmg was mounted as.
+thisOne=`hdiutil info | grep -i /Volumes/Elevate\ UC\ 2.7.86-universal | cut -w -f1`
+
+# Unmount the drive.
+hdiutil detach $thisOne
+
+# Delete the .dmg.
+rm elevate-us.dmg
